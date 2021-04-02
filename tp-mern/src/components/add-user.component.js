@@ -1,24 +1,44 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
 
-export default class CreateUser extends Component {
+export default class AddUser extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeNews = this.onChangeNews.bind(this);
+    this.onChangeDob = this.onChangeDob.bind(this);
+    this.onChangeGender = this.onChangeGender.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePhoto = this.onChangePhoto.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: ''
-    }
+      username: "",
+      news: Boolean,
+      dob: new Date(),
+      gender: "",
+      email: "",
+      photo: "",
+    };
   }
 
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
+      
     })
   }
-
+  onChangeNews(e) {
+    this.setState({
+      news : e.target.Boolean,
+      
+    })
+  }
+  news : e.target.Boolean,
+      dob: e.target.Date,
+      gender: e.target.value,
+      email : e.target .value,
+      photo: e.target.value
   onSubmit(e) {
     e.preventDefault();
 
@@ -26,35 +46,11 @@ export default class CreateUser extends Component {
       username: this.state.username
     }
 
-    console.log(user);
-
-    axios.post('http://localhost:5000/users/add', user)
-      .then(res => console.log(res.data));
-
-    this.setState({
-      username: ''
-    })
-  }
-
   render() {
     return (
       <div>
-        <h3>Create New User</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
-            <label>Username: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
-          </div>
-        </form>
+        <p>You are in the AddUser component !</p>
       </div>
-    )
+    );
   }
 }
